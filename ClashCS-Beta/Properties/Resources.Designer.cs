@@ -69,6 +69,5 @@ namespace ClashCS.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
     }
 }

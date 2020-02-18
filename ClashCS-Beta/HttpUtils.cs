@@ -1,11 +1,19 @@
 ﻿using System.Net;
 using System.IO;
 using System;
+using static ClashCS.Program;
+using System.Linq;
 
 namespace ClashCS
 {
     public class HttpUtils
     {
+        public static string IP = "http://127.0.0.1";
+        public static string PORT = "9090";
+        public static string logURL = IP + ":" + PORT + "/logs";
+        public static string configsURL = IP + ":" + PORT + "/configs";
+        public static string proxiesURL = IP + ":" + PORT + "/proxies";
+
         public static string Start(string url, string path)
         {
             // 设置参数
@@ -32,7 +40,7 @@ namespace ClashCS
         {
             try
             {
-                var request = (HttpWebRequest)WebRequest.Create(LogsForm.URL);
+                var request = (HttpWebRequest)WebRequest.Create(logURL);
                 request.Method = "Get";
                 request.ContentLength = 0;
                 request.ContentType = "application/json";
@@ -51,6 +59,30 @@ namespace ClashCS
             {
                 return;
             }
+        }
+
+        public string[] RestGetConfigs()
+        {
+            var request = (HttpWebRequest)WebRequest.Create(configsURL);
+            request.Method = "Get";
+            request.ContentLength = 0;
+            request.ContentType = "application/json";
+            var response = (HttpWebResponse)request.GetResponse();
+            var responseStream = response.GetResponseStream();
+            var sr = new StreamReader(responseStream);
+            var _json = sr.ReadToEnd();
+            var list = _json.ToList();
+            list.Remove('{');
+            list.Remove('}');
+            int i = 22;
+            while (i != 0)
+            {
+                list.Remove('\"');
+                i--;
+            }
+            _json = string.Join("", list.ToArray());
+            var _d = _json.Split(':', ',');
+            return new string[] { _d[1], _d[3], _d[5], _d[9], _d[13] }; //port sport rport allowlan mode            
         }
     }
 }

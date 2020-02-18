@@ -10,7 +10,6 @@ namespace ClashCS
     public partial class LogsForm : Form
     {
         public static Form FormFlag;
-        public static string URL = "http://127.0.0.1:9090/logs";
         public static SynchronizationContext context;
 
         public LogsForm()

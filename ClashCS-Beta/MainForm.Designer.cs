@@ -153,6 +153,7 @@
             this.sub_textBox.Name = "sub_textBox";
             this.sub_textBox.Size = new System.Drawing.Size(285, 27);
             this.sub_textBox.TabIndex = 8;
+            this.sub_textBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.sub_textBox_MouseClick);
             // 
             // download_button
             // 
@@ -251,7 +252,6 @@
             // 
             // share_button
             // 
-            this.share_button.Enabled = false;
             this.share_button.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.share_button.Location = new System.Drawing.Point(356, 181);
             this.share_button.Name = "share_button";
@@ -296,7 +296,6 @@
             this.socks_port_textBox.Name = "socks_port_textBox";
             this.socks_port_textBox.Size = new System.Drawing.Size(65, 27);
             this.socks_port_textBox.TabIndex = 26;
-            this.socks_port_textBox.Text = "7891";
             // 
             // label11
             // 
@@ -315,10 +314,10 @@
             this.redir_port_textBox.Name = "redir_port_textBox";
             this.redir_port_textBox.Size = new System.Drawing.Size(65, 27);
             this.redir_port_textBox.TabIndex = 28;
-            this.redir_port_textBox.Text = "7892";
             // 
             // apply_button
             // 
+            this.apply_button.Enabled = false;
             this.apply_button.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.apply_button.Location = new System.Drawing.Point(251, 478);
             this.apply_button.Name = "apply_button";
@@ -451,6 +450,7 @@
             this.local_radioButton1.TabStop = true;
             this.local_radioButton1.Text = "use:";
             this.local_radioButton1.UseVisualStyleBackColor = true;
+            this.local_radioButton1.CheckedChanged += new System.EventHandler(this.local_radioButton1_CheckedChanged);
             // 
             // logobox
             // 
@@ -462,11 +462,11 @@
             this.logobox.TabIndex = 0;
             this.logobox.TabStop = false;
             // 
-            // ClashCSMainForm
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(442, 589);
+            this.ClientSize = new System.Drawing.Size(471, 589);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.log_button1);
             this.Controls.Add(this.stop_button);
@@ -497,7 +497,7 @@
             this.Controls.Add(this.status1);
             this.Controls.Add(this.logobox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "ClashCSMainForm";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ClashCS";
             this.Load += new System.EventHandler(this.ClashCSMainForm_Load);
