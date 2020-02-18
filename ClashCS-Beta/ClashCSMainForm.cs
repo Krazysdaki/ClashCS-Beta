@@ -9,10 +9,10 @@ namespace ClashCS
 {
     public partial class ClashCSMainForm : Form
     {
-        int runningFlag = 0;
-        //string DIR = Environment.CurrentDirectory.ToString();
-        string baseDIR = @"C:\ProgramMy\Clash\Clash";
-        string DIR = @"C:\ProgramMy\Clash\Clash";
+        public static int runningFlag = 0;
+        //static string baseDIR = Environment.CurrentDirectory.ToString();
+        static string baseDIR = @"C:\ProgramMy\Clash\Clash";
+        string DIR = baseDIR;
         string mmdbURL = "https://geolite.clash.dev/Country.mmdb";
         private SynchronizationContext context;
         private FolderBrowserDialog folderBrowserDialog1;
@@ -41,7 +41,7 @@ namespace ClashCS
                         DialogResult dr = MessageBox.Show("Country.mmdb not exist, donwload it?", "WARNING", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                         if (dr == DialogResult.OK)
                         {
-                            string result = HttpDowloader.Start(mmdbURL, local_config_path_textBox.Text + "\\Country.mmdb");
+                            string result = HttpUtils.Start(mmdbURL, local_config_path_textBox.Text + "\\Country.mmdb");
                             MessageBox.Show(result);
                             return true;
                         }
@@ -52,7 +52,6 @@ namespace ClashCS
                     }
                     else
                     {
-                        //decode yaml and set it to ui
                         DIR = local_config_path_textBox.Text;
                         return true;
                     }
@@ -94,7 +93,7 @@ namespace ClashCS
                         DialogResult dr = MessageBox.Show("Country.mmdb not exist, donwload it?", "WARNING", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                         if (dr == DialogResult.OK)
                         {
-                            string result = HttpDowloader.Start(mmdbURL, local_config_path_textBox.Text + "\\Country.mmdb");
+                            string result = HttpUtils.Start(mmdbURL, local_config_path_textBox.Text + "\\Country.mmdb");
                             MessageBox.Show(result);
                             return true;
                         }
@@ -105,7 +104,6 @@ namespace ClashCS
                     }
                     else
                     {
-                        //decode yaml and set it to ui
                         return true;
                     }
                 }
@@ -178,6 +176,24 @@ namespace ClashCS
                 status.ForeColor = Color.Red;
             }
         }
+        private void log_button1_Click(object sender, EventArgs e)
+        {
+            if (runningFlag == 1)
+            {
+                LogsForm logForm = new LogsForm();
+                LogsForm.FormFlag = logForm;
+                logForm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Clash is not running!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        private void share_button_Click(object sender, EventArgs e)
+        {
+            ShareQRCodeForm qrcode = new ShareQRCodeForm();
+            qrcode.Show();
+        }
         private void browse_button_Click(object sender, EventArgs e)
         {
             folderBrowserDialog1 = new FolderBrowserDialog();
@@ -189,11 +205,6 @@ namespace ClashCS
             {
                 MessageBox.Show("Selected Nothing!");
             }
-        }
-        private void share_button_Click(object sender, EventArgs e)
-        {
-            ShareQRCodeForm qrcode = new ShareQRCodeForm();
-            qrcode.Show();
         }
         private void download_button_Click(object sender, EventArgs e)
         {
@@ -214,8 +225,28 @@ namespace ClashCS
                 {
                     File.Move(DIR + @"\download\config.yaml", DIR + @"\download\config.yaml" + DateTime.Now.ToString(" yyyy-MM-ss HH_MM_ss") + ".bak");
                 }
-                string result = HttpDowloader.Start(sub_textBox.Text, DIR + "\\download\\config.yaml");
+                string result = HttpUtils.Start(sub_textBox.Text, DIR + "\\download\\config.yaml");
                 MessageBox.Show(result);
+            }
+        }
+        private void stop_button_Click(object sender, EventArgs e)
+        {
+            if (runningFlag == 1)
+            {
+                Process[] procs = Process.GetProcessesByName("clash-windows-amd64");
+                if (LogsForm.FormFlag != null)
+                {
+                    LogsForm.FormFlag.Close();
+                }
+                foreach (Process p in procs) 
+                {
+                    p.Kill();
+                }
+                MessageBox.Show("Kill-all Success!");
+            }
+            else
+            {
+                MessageBox.Show("Clash is not running!");
             }
         }
         private void start_button_Click(object sender, EventArgs e)
@@ -240,42 +271,39 @@ namespace ClashCS
             }
             DIR = baseDIR;
         }
-        private void restart_button_Click(object sender, EventArgs e)
-        {
-            stop_button_Click(sender, e);
-            start_button_Click(sender, e);
-        }
-        private void stop_button_Click(object sender, EventArgs e)
-        {
-            if (runningFlag == 1)
-            {
-                Process[] procs = Process.GetProcessesByName("clash-windows-amd64");
-                foreach (Process p in procs) 
-                {
-                    p.Kill();
-                }
-                MessageBox.Show("Kill-all Success!");
-            }
-            else
-            {
-                MessageBox.Show("Clash is not running!");
-            }
-        }
         private void apply_button_Click(object sender, EventArgs e)
         {
-            int mode = 2;
+            //int mode = 2;
             if (rule_radioButton.Checked)
             {
-                mode = 0;
             }
             else if (global_radioButton.Checked)
             {
-                mode = 1;
             }
             //apply mode here...
 
             restart_button_Click(sender, e);
         }
+        private void restart_button_Click(object sender, EventArgs e)
+        {
+            stop_button_Click(sender, e);
+            start_button_Click(sender, e);
+        }
 
+        private void ClashCSMainForm_Load(object sender, EventArgs e)
+        {
+            Thread loadRunning = new Thread(new ThreadStart(LoadRunning));
+            loadRunning.IsBackground = true;
+            loadRunning.Start();
+        }
+
+        private void LoadRunning()
+        {
+            Thread.Sleep(1100);
+            if (runningFlag == 1)
+            {
+
+            }
+        }
     }
 }

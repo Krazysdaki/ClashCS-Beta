@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClashCSMainForm));
-            this.logobox = new System.Windows.Forms.PictureBox();
             this.status1 = new System.Windows.Forms.Label();
             this.status = new System.Windows.Forms.Label();
             this.mode1 = new System.Windows.Forms.Label();
@@ -66,19 +65,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.sub_radioButton2 = new System.Windows.Forms.RadioButton();
             this.local_radioButton1 = new System.Windows.Forms.RadioButton();
-            ((System.ComponentModel.ISupportInitialize)(this.logobox)).BeginInit();
+            this.logobox = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logobox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // logobox
-            // 
-            this.logobox.Image = global::ClashCS_Beta.Properties.Resources.logo;
-            this.logobox.Location = new System.Drawing.Point(12, 12);
-            this.logobox.Name = "logobox";
-            this.logobox.Size = new System.Drawing.Size(128, 128);
-            this.logobox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.logobox.TabIndex = 0;
-            this.logobox.TabStop = false;
             // 
             // status1
             // 
@@ -218,6 +208,7 @@
             // current1
             // 
             this.current1.AutoSize = true;
+            this.current1.Enabled = false;
             this.current1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.current1.Location = new System.Drawing.Point(23, 186);
             this.current1.Name = "current1";
@@ -227,19 +218,20 @@
             // 
             // current_proxy_name
             // 
-            this.current_proxy_name.AutoSize = true;
             this.current_proxy_name.BackColor = System.Drawing.SystemColors.HighlightText;
             this.current_proxy_name.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.current_proxy_name.Enabled = false;
             this.current_proxy_name.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.current_proxy_name.Location = new System.Drawing.Point(146, 184);
             this.current_proxy_name.Name = "current_proxy_name";
-            this.current_proxy_name.Size = new System.Drawing.Size(198, 22);
+            this.current_proxy_name.Size = new System.Drawing.Size(204, 22);
             this.current_proxy_name.TabIndex = 18;
             this.current_proxy_name.Text = "demo-endpoint-proxy-hk";
             // 
             // select_new1
             // 
             this.select_new1.AutoSize = true;
+            this.select_new1.Enabled = false;
             this.select_new1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.select_new1.Location = new System.Drawing.Point(43, 227);
             this.select_new1.Name = "select_new1";
@@ -249,6 +241,7 @@
             // 
             // select_new_comboBox
             // 
+            this.select_new_comboBox.Enabled = false;
             this.select_new_comboBox.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.select_new_comboBox.FormattingEnabled = true;
             this.select_new_comboBox.Location = new System.Drawing.Point(146, 224);
@@ -258,6 +251,7 @@
             // 
             // share_button
             // 
+            this.share_button.Enabled = false;
             this.share_button.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.share_button.Location = new System.Drawing.Point(356, 181);
             this.share_button.Name = "share_button";
@@ -302,6 +296,7 @@
             this.socks_port_textBox.Name = "socks_port_textBox";
             this.socks_port_textBox.Size = new System.Drawing.Size(65, 27);
             this.socks_port_textBox.TabIndex = 26;
+            this.socks_port_textBox.Text = "7891";
             // 
             // label11
             // 
@@ -320,6 +315,7 @@
             this.redir_port_textBox.Name = "redir_port_textBox";
             this.redir_port_textBox.Size = new System.Drawing.Size(65, 27);
             this.redir_port_textBox.TabIndex = 28;
+            this.redir_port_textBox.Text = "7892";
             // 
             // apply_button
             // 
@@ -371,6 +367,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(65, 27);
             this.textBox1.TabIndex = 34;
+            this.textBox1.Text = "9090";
             // 
             // label2
             // 
@@ -412,8 +409,9 @@
             this.log_button1.Name = "log_button1";
             this.log_button1.Size = new System.Drawing.Size(75, 30);
             this.log_button1.TabIndex = 42;
-            this.log_button1.Text = "Log";
+            this.log_button1.Text = "Logs";
             this.log_button1.UseVisualStyleBackColor = true;
+            this.log_button1.Click += new System.EventHandler(this.log_button1_Click);
             // 
             // panel1
             // 
@@ -454,6 +452,16 @@
             this.local_radioButton1.Text = "use:";
             this.local_radioButton1.UseVisualStyleBackColor = true;
             // 
+            // logobox
+            // 
+            this.logobox.Image = global::ClashCS.Properties.Resources.logo;
+            this.logobox.Location = new System.Drawing.Point(12, 12);
+            this.logobox.Name = "logobox";
+            this.logobox.Size = new System.Drawing.Size(128, 128);
+            this.logobox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logobox.TabIndex = 0;
+            this.logobox.TabStop = false;
+            // 
             // ClashCSMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -492,9 +500,10 @@
             this.Name = "ClashCSMainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ClashCS";
-            ((System.ComponentModel.ISupportInitialize)(this.logobox)).EndInit();
+            this.Load += new System.EventHandler(this.ClashCSMainForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logobox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

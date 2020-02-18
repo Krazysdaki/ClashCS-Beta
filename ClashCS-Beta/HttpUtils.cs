@@ -1,9 +1,10 @@
 ﻿using System.Net;
 using System.IO;
+using System;
 
 namespace ClashCS
 {
-    public class HttpDowloader
+    public class HttpUtils
     {
         public static string Start(string url, string path)
         {
@@ -25,6 +26,31 @@ namespace ClashCS
             stream.Close();
             responseStream.Close();
             return "Download Success!";
+        }
+
+        public void RestGet()
+        {
+            try
+            {
+                var request = (HttpWebRequest)WebRequest.Create(LogsForm.URL);
+                request.Method = "Get";
+                request.ContentLength = 0;
+                request.ContentType = "application/json";
+                var response = (HttpWebResponse)request.GetResponse();
+                var responseStream = response.GetResponseStream();
+                var sr = new StreamReader(responseStream);
+                while (responseStream != null)
+                {
+                    object _json = sr.ReadLine();
+                    LogsForm.context.Send(LogsForm.AddLog, _json);
+                }
+                object noLog = "Stream is empty!";
+                LogsForm.context.Send(LogsForm.AddLog, noLog);
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }

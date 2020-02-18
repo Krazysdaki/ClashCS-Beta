@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("A beta version Clash GUI built by C#.")]
+[assembly: AssemblyTitle("ClashCS-Beta")]
 [assembly: AssemblyDescription("A beta version Clash GUI built by C#.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Knect, Inc.")]
