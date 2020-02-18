@@ -57,11 +57,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClashCSMainForm.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ClashCSMainForm.Designer.cs">
-      <DependentUpon>ClashCSMainForm.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="HttpUtils.cs" />
     <Compile Include="LogsForm.cs">
@@ -79,8 +79,8 @@
     <Compile Include="ShareQRCodeForm.Designer.cs">
       <DependentUpon>ShareQRCodeForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ClashCSMainForm.resx">
-      <DependentUpon>ClashCSMainForm.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LogsForm.resx">
       <DependentUpon>LogsForm.cs</DependentUpon>

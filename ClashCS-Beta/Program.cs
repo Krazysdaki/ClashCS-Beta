@@ -13,7 +13,7 @@ namespace ClashCS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ClashCSMainForm());
+            Application.Run(new MainForm());
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace ClashCS
 {
-    partial class ClashCSMainForm
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClashCSMainForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.status1 = new System.Windows.Forms.Label();
             this.status = new System.Windows.Forms.Label();
             this.mode1 = new System.Windows.Forms.Label();

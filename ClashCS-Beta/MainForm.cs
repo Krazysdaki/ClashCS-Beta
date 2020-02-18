@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace ClashCS
 {
-    public partial class ClashCSMainForm : Form
+    public partial class MainForm : Form
     {
         public static int runningFlag = 0;
         //static string baseDIR = Environment.CurrentDirectory.ToString();
@@ -16,7 +16,7 @@ namespace ClashCS
         string mmdbURL = "https://geolite.clash.dev/Country.mmdb";
         private SynchronizationContext context;
         private FolderBrowserDialog folderBrowserDialog1;
-        public ClashCSMainForm()
+        public MainForm()
         {
             InitializeComponent();
             context = SynchronizationContext.Current;
