@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ClashCS-Beta")]
 [assembly: AssemblyDescription("A beta version Clash GUI built by C#.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Knect, Inc.")]
+[assembly: AssemblyCompany("Krazys, Inc.")]
 [assembly: AssemblyProduct("ClashCS-Beta")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.0.8.0")]
-[assembly: AssemblyFileVersion("0.0.8.0")]
+[assembly: AssemblyVersion("0.0.9.0")]
+[assembly: AssemblyFileVersion("0.0.9.0")]
