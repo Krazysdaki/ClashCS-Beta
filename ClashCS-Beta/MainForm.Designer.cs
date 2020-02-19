@@ -442,7 +442,7 @@
             // 
             // logobox
             // 
-            this.logobox.Image = global::ClashCS.Properties.Resources.logo;
+            this.logobox.Image = global::ClashCS.Properties.Resources.logo1;
             this.logobox.Location = new System.Drawing.Point(12, 12);
             this.logobox.Name = "logobox";
             this.logobox.Size = new System.Drawing.Size(128, 128);

@@ -1,9 +1,6 @@
 ﻿using System.Net;
 using System.IO;
-using System;
-using static ClashCS.Program;
 using System.Linq;
-using System.Threading;
 
 namespace ClashCS
 {

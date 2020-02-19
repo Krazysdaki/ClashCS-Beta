@@ -171,12 +171,6 @@ namespace ClashCS
                 Thread.Sleep(1000);
             }
         }
-        public static void SetUpDown(object _s)
-        {
-            var _str = _s.ToString();
-            var _d = _str.Split(',');
-            updownLabel.Text = "▲" + _d[0] + "KB/s " + "▼" + _d[1] + "KB/s";
-        }
         private void LoadStatusStrip()
         {
             statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -234,6 +228,12 @@ namespace ClashCS
                 status.Text = "Stopped";
                 status.ForeColor = Color.Red;
             }
+        }
+        public static void SetUpDown(object _s)
+        {
+            var _str = _s.ToString();
+            var _d = _str.Split(',');
+            updownLabel.Text = "▲" + _d[0] + "KB/s " + "▼" + _d[1] + "KB/s";
         }
         private void log_button1_Click(object sender, EventArgs e)
         {
