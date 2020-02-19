@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Threading.Tasks;
 using static ClashCS.HttpUtils;
-using System.Collections.Generic;
 
 namespace ClashCS
 {
@@ -19,8 +18,6 @@ namespace ClashCS
         string DIR = baseDIR;
         string mmdbURL = "https://geolite.clash.dev/Country.mmdb";
 
-        HttpUtils http = new HttpUtils();
-
         public static SynchronizationContext context;
         public static SynchronizationContext cntx;
         private FolderBrowserDialog folderBrowserDialog1;
@@ -29,6 +26,8 @@ namespace ClashCS
         static ToolStripStatusLabel updownLabel;
         static ToolStripStatusLabel toolStripStatusLabel1;
         static ToolStripStatusLabel toolStripStatusLabel2;
+
+        HttpUtils http = new HttpUtils();
 
         public struct Configs
         {
@@ -50,6 +49,7 @@ namespace ClashCS
             checkProcess.IsBackground = true;
             checkProcess.Start();
         }
+
         private void LoadConf()
         {
             Thread.Sleep(10);
@@ -85,6 +85,7 @@ namespace ClashCS
             }
             else return;
         }
+
         private bool GetConfig()
         {
             if (local_radioButton1.Checked && local_config_path_textBox.Text != "")
@@ -171,6 +172,7 @@ namespace ClashCS
                 }
             }
         }
+
         private void CheckProcess()
         {           
             while (true)
@@ -185,6 +187,7 @@ namespace ClashCS
                 Thread.Sleep(1000);
             }
         }
+
         private void LoadStatusStrip()
         {
             statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -230,6 +233,7 @@ namespace ClashCS
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
         }
+
         private void ChangeStatus(object flag)
         {
             if (flag.ToString() == "1")
@@ -243,12 +247,14 @@ namespace ClashCS
                 status.ForeColor = Color.Red;
             }
         }
+
         public static void SetUpDown(object _s)
         {
             var _str = _s.ToString();
             var _d = _str.Split(',');
             updownLabel.Text = "▲" + _d[0] + "KB/s " + "▼" + _d[1] + "KB/s";
         }
+
         private void log_button1_Click(object sender, EventArgs e)
         {
             if (runningFlag == 1)
@@ -262,11 +268,13 @@ namespace ClashCS
                 MessageBox.Show("Clash is not running!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void share_button_Click(object sender, EventArgs e)
         {
             ShareQRCodeForm qrcode = new ShareQRCodeForm();
             qrcode.Show();
         }
+
         private void browse_button_Click(object sender, EventArgs e)
         {
             folderBrowserDialog1 = new FolderBrowserDialog();
@@ -279,6 +287,7 @@ namespace ClashCS
                 MessageBox.Show("Selected Nothing!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void download_button_Click(object sender, EventArgs e)
         {
             if (sub_textBox.Text == "")
@@ -302,6 +311,7 @@ namespace ClashCS
                 MessageBox.Show(result);
             }
         }
+
         private void stop_button_Click(object sender, EventArgs e)
         {
             if (runningFlag == 1)
@@ -322,6 +332,7 @@ namespace ClashCS
                 MessageBox.Show("Clash is not running!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void start_button_Click(object sender, EventArgs e)
         {
             if (!GetConfig())
@@ -346,6 +357,7 @@ namespace ClashCS
             LoadConf();
             DIR = baseDIR;
         }
+
         private void apply_button_Click(object sender, EventArgs e)
         {
             if (restPort_textBox.Text != null)
@@ -367,16 +379,19 @@ namespace ClashCS
             }
             //restart_button_Click(sender, e);
         }
+
         private void restart_button_Click(object sender, EventArgs e)
         {
             stop_button_Click(sender, e);
             start_button_Click(sender, e);
         }
+
         private void ClashCSMainForm_Load(object sender, EventArgs e)
         {
             LoadStatusStrip();
             LoadConf();
         }
+
         private void apply_button_MouseHover(object sender, EventArgs e)
         {
             ToolTip toolTip1 = new ToolTip();
@@ -386,16 +401,19 @@ namespace ClashCS
             toolTip1.ShowAlways = true;
             toolTip1.SetToolTip(apply_button, "Only apply to current process");
         }
+
         private void sub_textBox_MouseClick(object sender, MouseEventArgs e)
         {
             sub_radioButton2.Checked = true;
         }
+
         private void rule_radioButton_CheckedChanged(object sender, EventArgs e)
         {
             mode = "Rule";
             if (direct_radioButton.Checked) { mode = "Direct"; }
             else if (global_radioButton.Checked) { mode = "Global"; }
         }
+
         private void local_radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (local_radioButton1.Checked)
@@ -413,6 +431,7 @@ namespace ClashCS
                 sub_textBox.Enabled = true;
             }
         }
+
         private void global_radioButton_CheckedChanged(object sender, EventArgs e)
         {
             mode = "Rule";

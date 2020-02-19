@@ -37,6 +37,7 @@ namespace ClashCS
             responseStream.Close();
             return "Download Success!";
         }
+
         public void RestGetStream()
         {
             try
@@ -61,6 +62,7 @@ namespace ClashCS
                 return;
             }
         }
+
         public void RestGetStream(string url)
         {
             var request = (HttpWebRequest)WebRequest.Create(url);
@@ -85,11 +87,11 @@ namespace ClashCS
                     MainForm.cntx.Send(MainForm.SetUpDown, s);
                 }
                 catch { return; }
-
             }
             try { MainForm.cntx.Send(MainForm.SetUpDown, "0,0"); }
             catch { return; }
         }
+
         public string[] RestGet(string url)
         {
             var request = (HttpWebRequest)WebRequest.Create(url);
@@ -113,6 +115,7 @@ namespace ClashCS
             var _d = _json.Split(':', ',');
             return new string[] { _d[1], _d[3], _d[5], _d[9], _d[13] }; //port sport rport allowlan mode            
         }
+
         public void RestPatch(MainForm.Configs _c)
         {
             string postData = "{\"port\":" + _c.port + ", \"socks-port\":" + _c.sport + ", \"redir-port\":" + _c.rport + ", \"allow-lan\":" + _c.lan + ", \"mode\":" + "\"" + _c.mode + "\"}";
@@ -146,7 +149,5 @@ namespace ClashCS
                 else MessageBox.Show("Apply complete!", "Tips", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
-
     }
 }
