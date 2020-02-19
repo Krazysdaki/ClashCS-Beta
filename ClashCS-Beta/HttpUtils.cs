@@ -3,6 +3,7 @@ using System.IO;
 using System;
 using static ClashCS.Program;
 using System.Linq;
+using System.Threading;
 
 namespace ClashCS
 {
@@ -13,6 +14,7 @@ namespace ClashCS
         public static string logURL = IP + ":" + PORT + "/logs";
         public static string configsURL = IP + ":" + PORT + "/configs";
         public static string proxiesURL = IP + ":" + PORT + "/proxies";
+        public static string trafficURL = IP + ":" + PORT + "/traffic";
 
         public static string Start(string url, string path)
         {
@@ -36,7 +38,7 @@ namespace ClashCS
             return "Download Success!";
         }
 
-        public void RestGet()
+        public void RestGetStream()
         {
             try
             {
@@ -60,10 +62,36 @@ namespace ClashCS
                 return;
             }
         }
-
-        public string[] RestGetConfigs()
+        public void RestGetStream(string url)
         {
-            var request = (HttpWebRequest)WebRequest.Create(configsURL);
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "Get";
+            request.ContentLength = 0;
+            request.ContentType = "application/json";
+            var response = (HttpWebResponse)request.GetResponse();
+            var responseStream = response.GetResponseStream();
+            var sr = new StreamReader(responseStream);
+            while (responseStream != null)
+            {
+                var _json = sr.ReadLine();
+                var _list = _json.ToList();
+                _list.Remove('{');
+                _list.Remove('}');
+                _json = string.Join("", _list.ToArray());
+                var _d = _json.Split(',', ':');
+                object s = ((double)(int.Parse(_d[1]) / 1000)).ToString() + ',' + ((double)(int.Parse(_d[3]) / 1000)).ToString();
+                try {
+                    MainForm.cntx.Send(MainForm.SetUpDown, s);}
+                catch { continue; }
+
+            }
+            try { MainForm.cntx.Send(MainForm.SetUpDown, "0,0"); }
+            catch { return; }
+        }
+
+        public string[] RestGet(string url)
+        {
+            var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "Get";
             request.ContentLength = 0;
             request.ContentType = "application/json";

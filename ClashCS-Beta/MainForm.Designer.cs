@@ -58,7 +58,6 @@
             this.startup_checkBox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.restart_button = new System.Windows.Forms.Button();
             this.stop_button = new System.Windows.Forms.Button();
             this.log_button1 = new System.Windows.Forms.Button();
@@ -368,17 +367,6 @@
             this.textBox1.TabIndex = 34;
             this.textBox1.Text = "9090";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Gray;
-            this.label2.Location = new System.Drawing.Point(12, 563);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(299, 17);
-            this.label2.TabIndex = 35;
-            this.label2.Text = "©Copyright 2020 Knect. All rights reserved.";
-            // 
             // restart_button
             // 
             this.restart_button.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -466,12 +454,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(471, 589);
+            this.ClientSize = new System.Drawing.Size(471, 596);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.log_button1);
             this.Controls.Add(this.stop_button);
             this.Controls.Add(this.restart_button);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.startup_checkBox);
@@ -541,13 +528,13 @@
         private System.Windows.Forms.CheckBox startup_checkBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button restart_button;
         private System.Windows.Forms.Button stop_button;
         private System.Windows.Forms.Button log_button1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RadioButton sub_radioButton2;
         private System.Windows.Forms.RadioButton local_radioButton1;
+
     }
 }
 

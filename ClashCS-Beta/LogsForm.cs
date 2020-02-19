@@ -17,7 +17,7 @@ namespace ClashCS
             DrawList();
             context = SynchronizationContext.Current;
             HttpUtils http = new HttpUtils();
-            Thread addLog = new Thread(new ThreadStart(http.RestGet));
+            Thread addLog = new Thread(new ThreadStart(http.RestGetStream));
             addLog.IsBackground = true;
             addLog.Start();
         }

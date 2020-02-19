@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Threading;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.Threading.Tasks;
+using static ClashCS.HttpUtils;
 
 namespace ClashCS
 {
@@ -14,13 +16,20 @@ namespace ClashCS
         static string baseDIR = @"C:\ProgramMy\Clash\Clash";
         string DIR = baseDIR;
         string mmdbURL = "https://geolite.clash.dev/Country.mmdb";
-        private SynchronizationContext context;
+        public static SynchronizationContext context;
+        public static SynchronizationContext cntx;
         private FolderBrowserDialog folderBrowserDialog1;
+
+        static StatusStrip statusStrip1;
+        static ToolStripStatusLabel updownLabel;
+        static ToolStripStatusLabel toolStripStatusLabel1;
+        static ToolStripStatusLabel toolStripStatusLabel2;
 
         public MainForm()
         {
             InitializeComponent();
             context = SynchronizationContext.Current;
+            cntx = SynchronizationContext.Current;
             ThreadStart ts1 = new ThreadStart(CheckProcess);
             Thread checkProcess = new Thread(ts1);
             checkProcess.IsBackground = true;
@@ -32,7 +41,7 @@ namespace ClashCS
             if (runningFlag == 1)
             {
                 HttpUtils http = new HttpUtils();
-                var c = http.RestGetConfigs();
+                var c = http.RestGet(configsURL);
                 http_port_textBox.Text = c[0];
                 socks_port_textBox.Text = c[1];
                 redir_port_textBox.Text = c[2];
@@ -55,6 +64,10 @@ namespace ClashCS
                     string _d = ps[0].MainModule.FileName;
                     local_config_path_textBox.Text = _d.Substring(0, _d.Length - 24);
                 }
+                Task getUpDown = new Task(() => {
+                    http.RestGetStream(trafficURL);
+                });
+                getUpDown.Start();
             }
             else return;
         }
@@ -157,6 +170,57 @@ namespace ClashCS
                 context.Send(ChangeStatus, runningFlag);
                 Thread.Sleep(1000);
             }
+        }
+        public static void SetUpDown(object _s)
+        {
+            var _str = _s.ToString();
+            var _d = _str.Split(',');
+            updownLabel.Text = "▲" + _d[0] + "KB/s " + "▼" + _d[1] + "KB/s";
+        }
+        private void LoadStatusStrip()
+        {
+            statusStrip1 = new System.Windows.Forms.StatusStrip();
+            updownLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            statusStrip1.SuspendLayout();
+            // statusStrip1
+            // 
+            statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            updownLabel,
+            toolStripStatusLabel1,
+            toolStripStatusLabel2});
+            statusStrip1.Location = new System.Drawing.Point(0, 571);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new System.Drawing.Size(471, 25);
+            statusStrip1.TabIndex = 44;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // updownLabel
+            // 
+            updownLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            updownLabel.ForeColor = System.Drawing.Color.Gray;
+            updownLabel.Name = "updownLabel";
+            updownLabel.Size = new System.Drawing.Size(173, 20);
+            updownLabel.Text = "▲ 2.0KB/s ▼498.5KB/s";
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new System.Drawing.Size(51, 20);
+            toolStripStatusLabel1.Spring = true;
+            // 
+            // toolStripStatusLabel2
+            // 
+            toolStripStatusLabel2.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            toolStripStatusLabel2.ForeColor = System.Drawing.Color.Gray;
+            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            toolStripStatusLabel2.Size = new System.Drawing.Size(193, 20);
+            toolStripStatusLabel2.Text = "©Copyright 2020 Knect. ";
+            Controls.Add(statusStrip1);
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
         }
         private void ChangeStatus(object flag)
         {
@@ -287,6 +351,7 @@ namespace ClashCS
         }
         private void ClashCSMainForm_Load(object sender, EventArgs e)
         {
+            LoadStatusStrip();
             LoadConf();
         }
         private void sub_textBox_MouseClick(object sender, MouseEventArgs e)
