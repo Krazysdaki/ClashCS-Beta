@@ -1,6 +1,9 @@
 ﻿using System.Net;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System;
+using System.Windows.Forms;
 
 namespace ClashCS
 {
@@ -34,7 +37,6 @@ namespace ClashCS
             responseStream.Close();
             return "Download Success!";
         }
-
         public void RestGetStream()
         {
             try
@@ -70,22 +72,24 @@ namespace ClashCS
             var sr = new StreamReader(responseStream);
             while (responseStream != null)
             {
-                var _json = sr.ReadLine();
-                var _list = _json.ToList();
-                _list.Remove('{');
-                _list.Remove('}');
-                _json = string.Join("", _list.ToArray());
-                var _d = _json.Split(',', ':');
-                object s = ((double)(int.Parse(_d[1]) / 1000)).ToString() + ',' + ((double)(int.Parse(_d[3]) / 1000)).ToString();
-                try {
-                    MainForm.cntx.Send(MainForm.SetUpDown, s);}
-                catch { continue; }
+                try
+                {
+                    var _json = sr.ReadLine();
+                    var _list = _json.ToList();
+                    _list.Remove('{');
+                    _list.Remove('}');
+                    _json = string.Join("", _list.ToArray());
+                    var _d = _json.Split(',', ':');
+                    object s = ((double)(int.Parse(_d[1]) / 1000)).ToString() + ',' + ((double)(int.Parse(_d[3]) / 1000)).ToString();
+
+                    MainForm.cntx.Send(MainForm.SetUpDown, s);
+                }
+                catch { return; }
 
             }
             try { MainForm.cntx.Send(MainForm.SetUpDown, "0,0"); }
             catch { return; }
         }
-
         public string[] RestGet(string url)
         {
             var request = (HttpWebRequest)WebRequest.Create(url);
@@ -109,5 +113,40 @@ namespace ClashCS
             var _d = _json.Split(':', ',');
             return new string[] { _d[1], _d[3], _d[5], _d[9], _d[13] }; //port sport rport allowlan mode            
         }
+        public void RestPatch(MainForm.Configs _c)
+        {
+            string postData = "{\"port\":" + _c.port + ", \"socks-port\":" + _c.sport + ", \"redir-port\":" + _c.rport + ", \"allow-lan\":" + _c.lan + ", \"mode\":" + "\"" + _c.mode + "\"}";
+            //MessageBox.Show(postData);
+            var encoding = new UTF8Encoding();
+            var bytes = Encoding.GetEncoding("iso-8859-1").GetBytes(postData);
+            var request = (HttpWebRequest)WebRequest.Create(configsURL);
+            request.Method = "PATCH";
+            request.ContentLength = bytes.Length;
+            request.ContentType = "application/json";
+            try
+            {
+                var writeStream = request.GetRequestStream();
+                writeStream.Write(bytes, 0, bytes.Length);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+            
+            using (var response = (HttpWebResponse)request.GetResponse())
+            {
+                var responseValue = string.Empty;
+
+                if (response.StatusCode != HttpStatusCode.NoContent)
+                {
+                    var message = string.Format("Request failed. Received HTTP {0}", response.StatusCode);
+                    MessageBox.Show(message);
+                    throw new ApplicationException(message);
+                }
+                else MessageBox.Show("Apply complete!", "Tips", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+
     }
 }

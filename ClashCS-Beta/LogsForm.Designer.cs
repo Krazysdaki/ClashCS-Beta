@@ -28,7 +28,6 @@
             // LogsForm
             // 
             this.ClientSize = new System.Drawing.Size(282, 253);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LogsForm";
             this.ResumeLayout(false);
 
@@ -77,6 +76,8 @@
             this.ClientSize = new System.Drawing.Size(875, 425);
             this.Name = "LogsForm";
             this.Text = "LogsForm";
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogsForm));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
             this.Controls.Add(listView1);

@@ -57,7 +57,7 @@
             this.allow_lan_checkBox = new System.Windows.Forms.CheckBox();
             this.startup_checkBox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.restPort_textBox = new System.Windows.Forms.TextBox();
             this.restart_button = new System.Windows.Forms.Button();
             this.stop_button = new System.Windows.Forms.Button();
             this.log_button1 = new System.Windows.Forms.Button();
@@ -112,6 +112,7 @@
             this.rule_radioButton.TabStop = true;
             this.rule_radioButton.Text = "Rule";
             this.rule_radioButton.UseVisualStyleBackColor = true;
+            this.rule_radioButton.CheckedChanged += new System.EventHandler(this.rule_radioButton_CheckedChanged);
             // 
             // global_radioButton
             // 
@@ -123,6 +124,7 @@
             this.global_radioButton.TabIndex = 5;
             this.global_radioButton.Text = "Global";
             this.global_radioButton.UseVisualStyleBackColor = true;
+            this.global_radioButton.CheckedChanged += new System.EventHandler(this.global_radioButton_CheckedChanged);
             // 
             // direct_radioButton
             // 
@@ -316,7 +318,6 @@
             // 
             // apply_button
             // 
-            this.apply_button.Enabled = false;
             this.apply_button.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.apply_button.Location = new System.Drawing.Point(251, 478);
             this.apply_button.Name = "apply_button";
@@ -325,6 +326,7 @@
             this.apply_button.Text = "Apply";
             this.apply_button.UseVisualStyleBackColor = true;
             this.apply_button.Click += new System.EventHandler(this.apply_button_Click);
+            this.apply_button.MouseHover += new System.EventHandler(this.apply_button_MouseHover);
             // 
             // allow_lan_checkBox
             // 
@@ -358,18 +360,18 @@
             this.label1.TabIndex = 33;
             this.label1.Text = "RESTful api Port:";
             // 
-            // textBox1
+            // restPort_textBox
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox1.Location = new System.Drawing.Point(366, 443);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(65, 27);
-            this.textBox1.TabIndex = 34;
-            this.textBox1.Text = "9090";
+            this.restPort_textBox.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.restPort_textBox.Location = new System.Drawing.Point(366, 443);
+            this.restPort_textBox.Name = "restPort_textBox";
+            this.restPort_textBox.Size = new System.Drawing.Size(65, 27);
+            this.restPort_textBox.TabIndex = 34;
+            this.restPort_textBox.Text = "9090";
             // 
             // restart_button
             // 
-            this.restart_button.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.restart_button.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.restart_button.Location = new System.Drawing.Point(251, 57);
             this.restart_button.Name = "restart_button";
             this.restart_button.Size = new System.Drawing.Size(75, 75);
@@ -459,7 +461,7 @@
             this.Controls.Add(this.log_button1);
             this.Controls.Add(this.stop_button);
             this.Controls.Add(this.restart_button);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.restPort_textBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.startup_checkBox);
             this.Controls.Add(this.allow_lan_checkBox);
@@ -527,7 +529,7 @@
         private System.Windows.Forms.CheckBox allow_lan_checkBox;
         private System.Windows.Forms.CheckBox startup_checkBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox restPort_textBox;
         private System.Windows.Forms.Button restart_button;
         private System.Windows.Forms.Button stop_button;
         private System.Windows.Forms.Button log_button1;

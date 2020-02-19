@@ -6,16 +6,21 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Threading.Tasks;
 using static ClashCS.HttpUtils;
+using System.Collections.Generic;
 
 namespace ClashCS
 {
     public partial class MainForm : Form
     {
         public static int runningFlag = 0;
-        //static string baseDIR = Environment.CurrentDirectory.ToString();
-        static string baseDIR = @"C:\ProgramMy\Clash\Clash";
+        public static string mode = "Rule";
+        static string baseDIR = Environment.CurrentDirectory.ToString();
+        //static string baseDIR = @"C:\ProgramMy\Clash\Clash";
         string DIR = baseDIR;
         string mmdbURL = "https://geolite.clash.dev/Country.mmdb";
+
+        HttpUtils http = new HttpUtils();
+
         public static SynchronizationContext context;
         public static SynchronizationContext cntx;
         private FolderBrowserDialog folderBrowserDialog1;
@@ -24,6 +29,16 @@ namespace ClashCS
         static ToolStripStatusLabel updownLabel;
         static ToolStripStatusLabel toolStripStatusLabel1;
         static ToolStripStatusLabel toolStripStatusLabel2;
+
+        public struct Configs
+        {
+            public string port;
+            public string sport;
+            public string rport;
+            public string lan;
+            public string mode;
+        }
+        Configs configs;
 
         public MainForm()
         {
@@ -40,7 +55,6 @@ namespace ClashCS
             Thread.Sleep(10);
             if (runningFlag == 1)
             {
-                HttpUtils http = new HttpUtils();
                 var c = http.RestGet(configsURL);
                 http_port_textBox.Text = c[0];
                 socks_port_textBox.Text = c[1];
@@ -197,7 +211,7 @@ namespace ClashCS
             updownLabel.ForeColor = System.Drawing.Color.Gray;
             updownLabel.Name = "updownLabel";
             updownLabel.Size = new System.Drawing.Size(173, 20);
-            updownLabel.Text = "▲ 2.0KB/s ▼498.5KB/s";
+            updownLabel.Text = "▲0KB/s ▼0KB/s";
             // 
             // toolStripStatusLabel1
             // 
@@ -211,7 +225,7 @@ namespace ClashCS
             toolStripStatusLabel2.ForeColor = System.Drawing.Color.Gray;
             toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             toolStripStatusLabel2.Size = new System.Drawing.Size(193, 20);
-            toolStripStatusLabel2.Text = "©Copyright 2020 Knect. ";
+            toolStripStatusLabel2.Text = "©Copyright 2020 Krazys. ";
             Controls.Add(statusStrip1);
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
@@ -315,13 +329,14 @@ namespace ClashCS
                 return;
             }
             Process p = new Process();
-            p.StartInfo.FileName = baseDIR + "\\clash-windows-amd64.exe";
+            p.StartInfo.FileName = DIR + "\\clash-windows-amd64.exe";
             p.StartInfo.CreateNoWindow = true;
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.Arguments = " -d " + "\"" + DIR + "\"";
             if (runningFlag == 0)
             {
-                p.Start();
+                try { p.Start(); }
+                catch { MessageBox.Show("Couldn't find clash-windows-amd64.exe!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                 MessageBox.Show("Start Success! \n CMD: \n" + p.StartInfo.FileName + p.StartInfo.Arguments, "Tips", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -333,16 +348,24 @@ namespace ClashCS
         }
         private void apply_button_Click(object sender, EventArgs e)
         {
-            //int mode = 2;
-            if (rule_radioButton.Checked)
+            if (restPort_textBox.Text != null)
             {
+                PORT = restPort_textBox.Text;
+                configsURL = configsURL = IP + ":" + PORT + "/configs";
+                MessageBox.Show(configsURL);
+                configs.port = http_port_textBox.Text;
+                configs.sport = socks_port_textBox.Text;
+                configs.rport = redir_port_textBox.Text;
+                configs.lan = (allow_lan_checkBox.Checked.ToString()).ToLower();
+                configs.mode = mode;
+                if (string.IsNullOrEmpty(configs.port) || string.IsNullOrEmpty(configs.sport) || string.IsNullOrEmpty(configs.rport))
+                {
+                    MessageBox.Show("Don't leave it empty!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }                  
+                http.RestPatch(configs);
             }
-            else if (global_radioButton.Checked)
-            {
-            }
-            //apply mode here...
-
-            restart_button_Click(sender, e);
+            //restart_button_Click(sender, e);
         }
         private void restart_button_Click(object sender, EventArgs e)
         {
@@ -354,9 +377,24 @@ namespace ClashCS
             LoadStatusStrip();
             LoadConf();
         }
+        private void apply_button_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip toolTip1 = new ToolTip();
+            toolTip1.AutoPopDelay = 5000;
+            toolTip1.InitialDelay = 200;
+            toolTip1.ReshowDelay = 200;
+            toolTip1.ShowAlways = true;
+            toolTip1.SetToolTip(apply_button, "Only apply to current process");
+        }
         private void sub_textBox_MouseClick(object sender, MouseEventArgs e)
         {
             sub_radioButton2.Checked = true;
+        }
+        private void rule_radioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            mode = "Rule";
+            if (direct_radioButton.Checked) { mode = "Direct"; }
+            else if (global_radioButton.Checked) { mode = "Global"; }
         }
         private void local_radioButton1_CheckedChanged(object sender, EventArgs e)
         {
@@ -374,6 +412,12 @@ namespace ClashCS
                 download_button.Enabled = true;
                 sub_textBox.Enabled = true;
             }
+        }
+        private void global_radioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            mode = "Rule";
+            if (direct_radioButton.Checked) { mode = "Direct"; }
+            else if (global_radioButton.Checked) { mode = "Global"; }
         }
 
     }
