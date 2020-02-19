@@ -49,6 +49,12 @@ namespace ClashCS
                         rule_radioButton.Checked = true;
                         break;
                 }
+                Process[] ps = Process.GetProcessesByName("clash-windows-amd64");
+                if (ps != null && ps.Length > 0)
+                {
+                    string _d = ps[0].MainModule.FileName;
+                    local_config_path_textBox.Text = _d.Substring(0, _d.Length - 24);
+                }
             }
             else return;
         }
@@ -146,10 +152,7 @@ namespace ClashCS
                 Process[] ps = Process.GetProcessesByName("clash-windows-amd64");
                 if (ps != null && ps.Length > 0)
                 {
-                    runningFlag = 1;
-                    try { string _d = ps[0].MainModule.FileName;
-                    local_config_path_textBox.Text  = _d.Substring(0, _d.Length - 24); }
-                    catch { }                                       
+                    runningFlag = 1;                                     
                 }
                 context.Send(ChangeStatus, runningFlag);
                 Thread.Sleep(1000);
