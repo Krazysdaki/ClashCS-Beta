@@ -387,7 +387,7 @@ namespace ClashCS
             start_button_Click(sender, e);
         }
 
-        private void ClashCSMainForm_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
             LoadStatusStrip();
             LoadConf();
@@ -440,5 +440,46 @@ namespace ClashCS
             else if (global_radioButton.Checked) { mode = "Global"; }
         }
 
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                DialogResult dr = MessageBox.Show("Hide to system tray? \n(Click No to exit)", "Tips", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                if (dr == DialogResult.No) { Process.GetCurrentProcess().Kill(); }
+                else if (dr == DialogResult.Yes)
+                {
+                    this.WindowState = FormWindowState.Minimized;
+                    ShowInTaskbar = false;
+                    this.notifyIcon1.Visible = true;
+                }
+            }
+        }
+
+        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                trayRightClickContextMenu.Show();
+            }
+            else
+            {
+                this.ShowInTaskbar = true;
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
+            }
+        }
+
+        private void 打开窗口ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ShowInTaskbar = true;
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.GetCurrentProcess().Kill();
+        }
     }
 }

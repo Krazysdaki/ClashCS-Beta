@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.status1 = new System.Windows.Forms.Label();
             this.status = new System.Windows.Forms.Label();
@@ -65,8 +66,13 @@
             this.sub_radioButton2 = new System.Windows.Forms.RadioButton();
             this.local_radioButton1 = new System.Windows.Forms.RadioButton();
             this.logobox = new System.Windows.Forms.PictureBox();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.trayRightClickContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.打开窗口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logobox)).BeginInit();
+            this.trayRightClickContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // status1
@@ -452,6 +458,38 @@
             this.logobox.TabIndex = 0;
             this.logobox.TabStop = false;
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.ContextMenuStrip = this.trayRightClickContextMenu;
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "ClashCS-Beta";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseClick);
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseClick);
+            // 
+            // trayRightClickContextMenu
+            // 
+            this.trayRightClickContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.trayRightClickContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.打开窗口ToolStripMenuItem,
+            this.退出ToolStripMenuItem});
+            this.trayRightClickContextMenu.Name = "trayRightClickContextMenu";
+            this.trayRightClickContextMenu.Size = new System.Drawing.Size(176, 80);
+            // 
+            // 打开窗口ToolStripMenuItem
+            // 
+            this.打开窗口ToolStripMenuItem.Name = "打开窗口ToolStripMenuItem";
+            this.打开窗口ToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.打开窗口ToolStripMenuItem.Text = "打开窗口";
+            this.打开窗口ToolStripMenuItem.Click += new System.EventHandler(this.打开窗口ToolStripMenuItem_Click);
+            // 
+            // 退出ToolStripMenuItem
+            // 
+            this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
+            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.退出ToolStripMenuItem.Text = "退出";
+            this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -491,10 +529,12 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ClashCS";
-            this.Load += new System.EventHandler(this.ClashCSMainForm_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logobox)).EndInit();
+            this.trayRightClickContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -538,7 +578,10 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RadioButton sub_radioButton2;
         private System.Windows.Forms.RadioButton local_radioButton1;
-
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ContextMenuStrip trayRightClickContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem 打开窗口ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
     }
 }
 
