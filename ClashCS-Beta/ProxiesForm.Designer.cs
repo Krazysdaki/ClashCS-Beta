@@ -51,14 +51,12 @@
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listView1.HoverSelection = true;
             this.listView1.Location = new System.Drawing.Point(11, 81);
-            this.listView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listView1.Name = "listView1";
             this.listView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.listView1.Size = new System.Drawing.Size(467, 741);
+            this.listView1.Size = new System.Drawing.Size(478, 741);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.VirtualListSize = 5;
             // 
             // ProxyName
             // 
@@ -89,8 +87,9 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(142, 6);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(197, 28);
+            this.comboBox1.Size = new System.Drawing.Size(200, 28);
             this.comboBox1.TabIndex = 2;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -106,23 +105,24 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(105, 42);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(234, 28);
+            this.comboBox2.Size = new System.Drawing.Size(237, 28);
             this.comboBox2.TabIndex = 4;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(345, 6);
+            this.button1.Location = new System.Drawing.Point(348, 6);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(133, 64);
+            this.button1.Size = new System.Drawing.Size(141, 64);
             this.button1.TabIndex = 5;
             this.button1.Text = "Apply";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ProxiesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(491, 835);
+            this.ClientSize = new System.Drawing.Size(501, 835);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.label2);
@@ -133,7 +133,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ProxiesForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Proxies";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProxiesForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

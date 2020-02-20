@@ -67,7 +67,6 @@
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proxiesButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.share_button = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logobox)).BeginInit();
             this.trayRightClickContextMenu.SuspendLayout();
@@ -147,9 +146,9 @@
             this.subscription1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.subscription1.Location = new System.Drawing.Point(42, 82);
             this.subscription1.Name = "subscription1";
-            this.subscription1.Size = new System.Drawing.Size(87, 19);
+            this.subscription1.Size = new System.Drawing.Size(194, 19);
             this.subscription1.TabIndex = 7;
-            this.subscription1.Text = "Subs conf:";
+            this.subscription1.Text = "Subs conf:    —————>";
             // 
             // sub_textBox
             // 
@@ -177,9 +176,9 @@
             this.local_config1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.local_config1.Location = new System.Drawing.Point(51, 12);
             this.local_config1.Name = "local_config1";
-            this.local_config1.Size = new System.Drawing.Size(78, 19);
+            this.local_config1.Size = new System.Drawing.Size(185, 19);
             this.local_config1.TabIndex = 11;
-            this.local_config1.Text = "Local Dir:";
+            this.local_config1.Text = "Local Dir:    —————>";
             // 
             // local_config_path_textBox
             // 
@@ -454,17 +453,6 @@
             this.button1.Text = "Conne-  tions";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // share_button
-            // 
-            this.share_button.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.share_button.Location = new System.Drawing.Point(357, 530);
-            this.share_button.Name = "share_button";
-            this.share_button.Size = new System.Drawing.Size(75, 30);
-            this.share_button.TabIndex = 21;
-            this.share_button.Text = "Share";
-            this.share_button.UseVisualStyleBackColor = true;
-            this.share_button.Click += new System.EventHandler(this.share_button_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -487,7 +475,6 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.http_port_textBox);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.share_button);
             this.Controls.Add(this.start_button);
             this.Controls.Add(this.direct_radioButton);
             this.Controls.Add(this.global_radioButton);
@@ -552,7 +539,6 @@
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
         private System.Windows.Forms.Button proxiesButton;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button share_button;
     }
 }
 

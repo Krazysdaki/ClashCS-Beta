@@ -14,7 +14,7 @@ namespace ClashCS
 
         public LogsForm()
         {
-            DrawList();
+            DrawLogsForm();
             context = SynchronizationContext.Current;
             HttpUtils http = new HttpUtils();
             Thread addLog = new Thread(new ThreadStart(http.RestGetStream));
@@ -50,5 +50,9 @@ namespace ClashCS
             return jsonData;
         }
 
+        private void LogsForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MainForm.lfr = true;
+        }
     }
 }

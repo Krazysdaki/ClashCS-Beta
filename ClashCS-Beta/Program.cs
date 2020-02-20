@@ -14,10 +14,9 @@ namespace ClashCS
         [STAThread]
         static void Main()
         {
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //var p = (Process.GetCurrentProcess()).ToString();
-            //MessageBox.Show(p.ToString());
             Process[] self = Process.GetProcessesByName(Application.ProductName);
             if (self.Length > 1)
             {

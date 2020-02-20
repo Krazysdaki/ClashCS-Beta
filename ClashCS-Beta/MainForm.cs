@@ -14,7 +14,6 @@ namespace ClashCS
         public static int runningFlag = 0;
         public static string mode = "Rule";
         static string baseDIR = Environment.CurrentDirectory.ToString();
-        //static string baseDIR = @"C:\ProgramMy\Clash\Clash";
         string DIR = baseDIR;
         string mmdbURL = "https://geolite.clash.dev/Country.mmdb";
 
@@ -38,6 +37,9 @@ namespace ClashCS
             public string mode;
         }
         Configs configs;
+
+        public static bool pfr = true;
+        public static bool lfr = true;
 
         public MainForm()
         {
@@ -255,24 +257,27 @@ namespace ClashCS
             updownLabel.Text = "▲" + _d[0] + "KB/s " + "▼" + _d[1] + "KB/s";
         }
 
-        private void log_button1_Click(object sender, EventArgs e)
+        LogsForm logForm = new LogsForm();
+        private Form GetLogsForm()
         {
-            if (runningFlag == 1)
+            if (logForm.IsDisposed)
             {
-                LogsForm logForm = new LogsForm();
-                LogsForm.FormFlag = logForm;
-                logForm.Show();
+                logForm = new LogsForm();
+                return logForm;
             }
             else
             {
-                MessageBox.Show("Clash is not running!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return logForm;
             }
         }
-
-        private void share_button_Click(object sender, EventArgs e)
+        private void log_button1_Click(object sender, EventArgs e)
         {
-            Share qrcode = new Share();
-            qrcode.Show();
+            if (lfr)
+            {
+                LogsForm.FormFlag = GetLogsForm();
+                logForm.Show();
+            }
+            GetLogsForm().BringToFront();
         }
 
         private void browse_button_Click(object sender, EventArgs e)
@@ -365,7 +370,6 @@ namespace ClashCS
             {
                 PORT = restPort_textBox.Text;
                 configsURL = configsURL = IP + ":" + PORT + "/configs";
-                MessageBox.Show(configsURL);
                 configs.port = http_port_textBox.Text;
                 configs.sport = socks_port_textBox.Text;
                 configs.rport = redir_port_textBox.Text;
@@ -378,7 +382,6 @@ namespace ClashCS
                 }                  
                 http.RestPatch(configs);
             }
-            //restart_button_Click(sender, e);
         }
 
         private void restart_button_Click(object sender, EventArgs e)
@@ -482,10 +485,28 @@ namespace ClashCS
             Process.GetCurrentProcess().Kill();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        ProxiesForm pForm = new ProxiesForm();
+        private Form GetProxiesForm()
         {
-            ProxiesForm pForm = new ProxiesForm();
-            pForm.Show();
+            if (pForm.IsDisposed)
+            {
+                pForm = new ProxiesForm();
+                return pForm;
+            }
+            else return pForm;
+        }  
+        private void button1_Click(object sender, EventArgs e)
+        {       
+            if (pfr)
+            {
+                GetProxiesForm().Show();
+                pfr = false;
+            }
+            else
+            {
+                GetProxiesForm().BringToFront();
+            }
+            
         }
     }
 }

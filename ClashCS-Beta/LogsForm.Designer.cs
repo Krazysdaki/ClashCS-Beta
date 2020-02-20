@@ -29,12 +29,11 @@
             // 
             this.ClientSize = new System.Drawing.Size(282, 253);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "LogsForm";
             this.ResumeLayout(false);
 
         }
 
-        private void DrawList()
+        private void DrawLogsForm()
         {
             ClashCS.LogsForm.listView1 = new System.Windows.Forms.ListView();
             ClashCS.LogsForm.LogLevel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -76,10 +75,13 @@
 
             this.ClientSize = new System.Drawing.Size(875, 425);
             this.Name = "LogsForm";
-            this.Text = "LogsForm";
+            this.Text = "Logs";
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogsForm));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LogsForm_FormClosing);
             this.ResumeLayout(false);
             this.Controls.Add(listView1);
         }

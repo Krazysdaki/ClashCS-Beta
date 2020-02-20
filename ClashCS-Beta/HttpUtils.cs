@@ -173,5 +173,32 @@ namespace ClashCS
             }
             return list;
         }
+
+        public void RestPut(string[] _p)
+        {
+            string postData = "{\"name\":" + "\"" + _p[1] + "\"}";
+            //MessageBox.Show(postData);
+            var encoding = new UTF8Encoding();
+            var bytes = Encoding.GetEncoding("iso-8859-1").GetBytes(postData);
+            var request = (HttpWebRequest)WebRequest.Create(proxiesURL + "/" + _p[0]);
+            //MessageBox.Show(configsURL + "/" + _p[0]);
+            request.ProtocolVersion = new Version("1.0");
+            request.Method = "PUT";
+            request.ContentLength = bytes.Length;
+            request.ContentType = "application/json";
+            var writeStream = request.GetRequestStream();
+            writeStream.Write(bytes, 0, bytes.Length);
+            writeStream.Flush();
+            try
+            {
+                var response = (HttpWebResponse)request.GetResponse();
+                //MessageBox.Show(response.StatusCode.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }            
+            request.Abort();
+        }
     }
 }
