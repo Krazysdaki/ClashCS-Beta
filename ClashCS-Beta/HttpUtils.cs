@@ -1,9 +1,13 @@
-﻿using System.Net;
+﻿using System;
 using System.IO;
+using System.Net;
 using System.Linq;
 using System.Text;
-using System;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
+using static ClashCS.ProxiesForm;
 
 namespace ClashCS
 {
@@ -92,7 +96,7 @@ namespace ClashCS
             catch { return; }
         }
 
-        public string[] RestGet(string url)
+        public string[] RestGetConf(string url)
         {
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "Get";
@@ -148,6 +152,26 @@ namespace ClashCS
                 }
                 else MessageBox.Show("Apply complete!", "Tips", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        public List<Proxies> RestGet(string url)
+        {
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "Get";
+            request.ContentLength = 0;
+            request.ContentType = "application/json";
+            var response = (HttpWebResponse)request.GetResponse();
+            var responseStream = response.GetResponseStream();
+            var sr = new StreamReader(responseStream);
+            var _json =  sr.ReadToEnd();
+            var occ = (JObject.Parse(_json).SelectToken("proxies").Children()).Children();
+            List<Proxies> list = new List<Proxies>();
+            foreach (var p in occ)
+            {
+                var proxies = JsonConvert.DeserializeObject<Proxies>(p.ToString());
+                list.Add(proxies);
+            }
+            return list;
         }
     }
 }

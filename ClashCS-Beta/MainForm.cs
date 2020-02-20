@@ -55,7 +55,7 @@ namespace ClashCS
             Thread.Sleep(10);
             if (runningFlag == 1)
             {
-                var c = http.RestGet(configsURL);
+                var c = http.RestGetConf(configsURL);
                 http_port_textBox.Text = c[0];
                 socks_port_textBox.Text = c[1];
                 redir_port_textBox.Text = c[2];
@@ -480,6 +480,12 @@ namespace ClashCS
         private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.GetCurrentProcess().Kill();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ProxiesForm pForm = new ProxiesForm();
+            pForm.Show();
         }
     }
 }
