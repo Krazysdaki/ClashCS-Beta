@@ -38,9 +38,6 @@ namespace ClashCS
         }
         Configs configs;
 
-        public static bool pfr = true;
-        public static bool lfr = true;
-
         public MainForm()
         {
             InitializeComponent();
@@ -204,7 +201,7 @@ namespace ClashCS
             updownLabel,
             toolStripStatusLabel1,
             toolStripStatusLabel2});
-            statusStrip1.Location = new System.Drawing.Point(0, 571);
+            statusStrip1.Location = new System.Drawing.Point(0, 570);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new System.Drawing.Size(471, 25);
             statusStrip1.TabIndex = 44;
@@ -272,11 +269,8 @@ namespace ClashCS
         }
         private void log_button1_Click(object sender, EventArgs e)
         {
-            if (lfr)
-            {
-                LogsForm.FormFlag = GetLogsForm();
-                logForm.Show();
-            }
+            LogsForm.FormFlag = GetLogsForm();
+            logForm.Show();
             GetLogsForm().BringToFront();
         }
 
@@ -366,7 +360,7 @@ namespace ClashCS
 
         private void apply_button_Click(object sender, EventArgs e)
         {
-            if (restPort_textBox.Text != null)
+            if (restPort_textBox.Text != null && runningFlag == 1)
             {
                 PORT = restPort_textBox.Text;
                 configsURL = configsURL = IP + ":" + PORT + "/configs";
@@ -494,19 +488,11 @@ namespace ClashCS
                 return pForm;
             }
             else return pForm;
-        }  
+        }
         private void button1_Click(object sender, EventArgs e)
-        {       
-            if (pfr)
-            {
-                GetProxiesForm().Show();
-                pfr = false;
-            }
-            else
-            {
-                GetProxiesForm().BringToFront();
-            }
-            
+        {
+            GetProxiesForm().Show();
+            GetProxiesForm().BringToFront();
         }
     }
 }

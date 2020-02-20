@@ -50,9 +50,5 @@ namespace ClashCS
             return jsonData;
         }
 
-        private void LogsForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            MainForm.lfr = true;
-        }
     }
 }

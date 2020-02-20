@@ -135,7 +135,6 @@
             this.Name = "ProxiesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Proxies";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProxiesForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

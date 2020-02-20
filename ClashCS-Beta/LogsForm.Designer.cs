@@ -81,7 +81,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LogsForm_FormClosing);
             this.ResumeLayout(false);
             this.Controls.Add(listView1);
         }

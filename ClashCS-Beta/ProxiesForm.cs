@@ -40,6 +40,10 @@ namespace ClashCS
 
         private void SetProxies()
         {
+            if (MainForm.runningFlag == 0)
+            {
+                return;
+            }
             HttpUtils http = new HttpUtils();
             List<Proxies> plist = http.RestGet(HttpUtils.proxiesURL);
             int iflag = 0;
@@ -101,9 +105,5 @@ namespace ClashCS
             MessageBox.Show("Succcess!\nReopen Proxies panel to see changes.", "Tips", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void ProxiesForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            MainForm.pfr = true;
-        }
     }
 }
