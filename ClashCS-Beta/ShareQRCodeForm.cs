@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace ClashCS
 {
-    public partial class ShareQRCodeForm : Form
+    public partial class Share : Form
     {
-        public ShareQRCodeForm()
+        public Share()
         {
             InitializeComponent();
         }

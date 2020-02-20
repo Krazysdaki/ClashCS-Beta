@@ -444,7 +444,7 @@
             // 
             // logobox
             // 
-            this.logobox.Image = global::ClashCS.Properties.Resources.logo1;
+            this.logobox.Image = global::ClashCS.Properties.Resources.logo;
             this.logobox.Location = new System.Drawing.Point(12, 12);
             this.logobox.Name = "logobox";
             this.logobox.Size = new System.Drawing.Size(128, 128);
@@ -486,6 +486,7 @@
             this.Controls.Add(this.status1);
             this.Controls.Add(this.logobox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ClashCS";

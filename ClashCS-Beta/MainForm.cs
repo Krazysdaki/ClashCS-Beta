@@ -271,7 +271,7 @@ namespace ClashCS
 
         private void share_button_Click(object sender, EventArgs e)
         {
-            ShareQRCodeForm qrcode = new ShareQRCodeForm();
+            Share qrcode = new Share();
             qrcode.Show();
         }
 
