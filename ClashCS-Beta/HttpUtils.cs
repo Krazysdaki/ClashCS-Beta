@@ -22,13 +22,9 @@ namespace ClashCS
 
         public static string Start(string url, string path)
         {
-            // 设置参数
             HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-            //发送请求并获取相应回应数据
             HttpWebResponse response = request.GetResponse() as HttpWebResponse;
-            //直到request.GetResponse()程序才开始向目标网页发送Post请求
             Stream responseStream = response.GetResponseStream();
-            //创建本地文件写入流
             Stream stream = new FileStream(path, FileMode.Create);
             byte[] bArr = new byte[1024];
             int size = responseStream.Read(bArr, 0, (int)bArr.Length);
@@ -39,7 +35,15 @@ namespace ClashCS
             }
             stream.Close();
             responseStream.Close();
+            FileInfo mmdb = new FileInfo(path);
+            if (mmdb.Exists)
+            {
             return "Download Success!";
+            }
+            else
+            {
+                return "Download Error!\nPlease manually download it.";
+            }
         }
 
         public void RestGetStream()
@@ -98,6 +102,10 @@ namespace ClashCS
 
         public string[] RestGetConf(string url)
         {
+            if (MainForm.runningFlag == 0)
+            {
+                return new string[] { "", "", "", "", ""};
+            }
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "Get";
             request.ContentLength = 0;

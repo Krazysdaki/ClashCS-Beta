@@ -100,8 +100,14 @@ namespace ClashCS
                         DialogResult dr = MessageBox.Show("Country.mmdb not exist, donwload it?", "WARNING", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                         if (dr == DialogResult.OK)
                         {
-                            string result = HttpUtils.Start(mmdbURL, local_config_path_textBox.Text + "\\Country.mmdb");
-                            MessageBox.Show(result);
+                            download_button.Enabled = false;
+                            //string result = null;
+                            var dc = Task.Run<string>(() => { return HttpUtils.Start(mmdbURL, local_config_path_textBox.Text + "\\Country.mmdb");});
+                            MessageBox.Show("Wait for download complete...");
+                            MessageBox.Show(dc.Result);
+                            //dc.Start();
+                            download_button.Enabled = true;
+                            DIR = local_config_path_textBox.Text;
                             return true;
                         }
                         else
