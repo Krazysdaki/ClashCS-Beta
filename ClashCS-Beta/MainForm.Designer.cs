@@ -74,7 +74,7 @@
             // 
             this.status1.AutoSize = true;
             this.status1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.status1.Location = new System.Drawing.Point(150, 25);
+            this.status1.Location = new System.Drawing.Point(149, 25);
             this.status1.Name = "status1";
             this.status1.Size = new System.Drawing.Size(60, 19);
             this.status1.TabIndex = 1;
@@ -106,7 +106,8 @@
             this.rule_radioButton.AutoSize = true;
             this.rule_radioButton.Checked = true;
             this.rule_radioButton.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.rule_radioButton.Location = new System.Drawing.Point(135, 153);
+            this.rule_radioButton.Location = new System.Drawing.Point(135, 152);
+            this.rule_radioButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rule_radioButton.Name = "rule_radioButton";
             this.rule_radioButton.Size = new System.Drawing.Size(62, 24);
             this.rule_radioButton.TabIndex = 4;
@@ -120,6 +121,7 @@
             this.global_radioButton.AutoSize = true;
             this.global_radioButton.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.global_radioButton.Location = new System.Drawing.Point(135, 178);
+            this.global_radioButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.global_radioButton.Name = "global_radioButton";
             this.global_radioButton.Size = new System.Drawing.Size(77, 24);
             this.global_radioButton.TabIndex = 5;
@@ -132,6 +134,7 @@
             this.direct_radioButton.AutoSize = true;
             this.direct_radioButton.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.direct_radioButton.Location = new System.Drawing.Point(135, 204);
+            this.direct_radioButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.direct_radioButton.Name = "direct_radioButton";
             this.direct_radioButton.Size = new System.Drawing.Size(74, 24);
             this.direct_radioButton.TabIndex = 6;
@@ -144,16 +147,17 @@
             this.subscription1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.subscription1.Location = new System.Drawing.Point(39, 81);
             this.subscription1.Name = "subscription1";
-            this.subscription1.Size = new System.Drawing.Size(194, 19);
+            this.subscription1.Size = new System.Drawing.Size(162, 19);
             this.subscription1.TabIndex = 7;
-            this.subscription1.Text = "Subs conf:    —————>";
+            this.subscription1.Text = "Subs conf:    ———>";
             // 
             // sub_textBox
             // 
             this.sub_textBox.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.sub_textBox.Location = new System.Drawing.Point(131, 113);
+            this.sub_textBox.Location = new System.Drawing.Point(131, 112);
+            this.sub_textBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.sub_textBox.Name = "sub_textBox";
-            this.sub_textBox.Size = new System.Drawing.Size(286, 27);
+            this.sub_textBox.Size = new System.Drawing.Size(287, 27);
             this.sub_textBox.TabIndex = 8;
             this.sub_textBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.sub_textBox_MouseClick);
             // 
@@ -161,6 +165,7 @@
             // 
             this.download_button.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.download_button.Location = new System.Drawing.Point(236, 76);
+            this.download_button.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.download_button.Name = "download_button";
             this.download_button.Size = new System.Drawing.Size(180, 30);
             this.download_button.TabIndex = 9;
@@ -174,14 +179,15 @@
             this.local_config1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.local_config1.Location = new System.Drawing.Point(48, 11);
             this.local_config1.Name = "local_config1";
-            this.local_config1.Size = new System.Drawing.Size(185, 19);
+            this.local_config1.Size = new System.Drawing.Size(153, 19);
             this.local_config1.TabIndex = 11;
-            this.local_config1.Text = "Local Dir:    —————>";
+            this.local_config1.Text = "Local Dir:    ———>";
             // 
             // local_config_path_textBox
             // 
             this.local_config_path_textBox.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.local_config_path_textBox.Location = new System.Drawing.Point(131, 43);
+            this.local_config_path_textBox.Location = new System.Drawing.Point(131, 42);
+            this.local_config_path_textBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.local_config_path_textBox.Name = "local_config_path_textBox";
             this.local_config_path_textBox.Size = new System.Drawing.Size(285, 27);
             this.local_config_path_textBox.TabIndex = 12;
@@ -190,6 +196,7 @@
             // 
             this.browse_button.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.browse_button.Location = new System.Drawing.Point(236, 6);
+            this.browse_button.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.browse_button.Name = "browse_button";
             this.browse_button.Size = new System.Drawing.Size(180, 30);
             this.browse_button.TabIndex = 13;
@@ -201,6 +208,7 @@
             // 
             this.start_button.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.start_button.Location = new System.Drawing.Point(135, 55);
+            this.start_button.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.start_button.Name = "start_button";
             this.start_button.Size = new System.Drawing.Size(75, 75);
             this.start_button.TabIndex = 15;
@@ -212,7 +220,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label9.Location = new System.Drawing.Point(46, 414);
+            this.label9.Location = new System.Drawing.Point(37, 414);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(83, 19);
             this.label9.TabIndex = 23;
@@ -222,6 +230,7 @@
             // 
             this.http_port_textBox.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.http_port_textBox.Location = new System.Drawing.Point(135, 408);
+            this.http_port_textBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.http_port_textBox.Name = "http_port_textBox";
             this.http_port_textBox.Size = new System.Drawing.Size(65, 27);
             this.http_port_textBox.TabIndex = 24;
@@ -230,7 +239,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.Location = new System.Drawing.Point(248, 415);
+            this.label10.Location = new System.Drawing.Point(243, 414);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(101, 19);
             this.label10.TabIndex = 25;
@@ -240,6 +249,7 @@
             // 
             this.socks_port_textBox.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.socks_port_textBox.Location = new System.Drawing.Point(355, 410);
+            this.socks_port_textBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.socks_port_textBox.Name = "socks_port_textBox";
             this.socks_port_textBox.Size = new System.Drawing.Size(65, 27);
             this.socks_port_textBox.TabIndex = 26;
@@ -248,7 +258,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label11.Location = new System.Drawing.Point(41, 449);
+            this.label11.Location = new System.Drawing.Point(32, 449);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(88, 19);
             this.label11.TabIndex = 27;
@@ -258,6 +268,7 @@
             // 
             this.redir_port_textBox.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.redir_port_textBox.Location = new System.Drawing.Point(135, 442);
+            this.redir_port_textBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.redir_port_textBox.Name = "redir_port_textBox";
             this.redir_port_textBox.Size = new System.Drawing.Size(65, 27);
             this.redir_port_textBox.TabIndex = 28;
@@ -266,6 +277,7 @@
             // 
             this.apply_button.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.apply_button.Location = new System.Drawing.Point(240, 491);
+            this.apply_button.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.apply_button.Name = "apply_button";
             this.apply_button.Size = new System.Drawing.Size(180, 30);
             this.apply_button.TabIndex = 29;
@@ -279,6 +291,7 @@
             this.allow_lan_checkBox.AutoSize = true;
             this.allow_lan_checkBox.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.allow_lan_checkBox.Location = new System.Drawing.Point(55, 498);
+            this.allow_lan_checkBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.allow_lan_checkBox.Name = "allow_lan_checkBox";
             this.allow_lan_checkBox.Size = new System.Drawing.Size(104, 23);
             this.allow_lan_checkBox.TabIndex = 31;
@@ -289,16 +302,17 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(216, 449);
+            this.label1.Location = new System.Drawing.Point(269, 449);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 19);
+            this.label1.Size = new System.Drawing.Size(75, 19);
             this.label1.TabIndex = 33;
-            this.label1.Text = "RESTful api Port:";
+            this.label1.Text = "API Port:";
             // 
             // restPort_textBox
             // 
             this.restPort_textBox.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.restPort_textBox.Location = new System.Drawing.Point(355, 444);
+            this.restPort_textBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.restPort_textBox.Name = "restPort_textBox";
             this.restPort_textBox.Size = new System.Drawing.Size(65, 27);
             this.restPort_textBox.TabIndex = 34;
@@ -308,6 +322,7 @@
             // 
             this.restart_button.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.restart_button.Location = new System.Drawing.Point(240, 55);
+            this.restart_button.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.restart_button.Name = "restart_button";
             this.restart_button.Size = new System.Drawing.Size(75, 75);
             this.restart_button.TabIndex = 38;
@@ -319,6 +334,7 @@
             // 
             this.stop_button.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.stop_button.Location = new System.Drawing.Point(345, 55);
+            this.stop_button.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.stop_button.Name = "stop_button";
             this.stop_button.Size = new System.Drawing.Size(75, 75);
             this.stop_button.TabIndex = 39;
@@ -329,7 +345,8 @@
             // log_button1
             // 
             this.log_button1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.log_button1.Location = new System.Drawing.Point(240, 153);
+            this.log_button1.Location = new System.Drawing.Point(240, 152);
+            this.log_button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.log_button1.Name = "log_button1";
             this.log_button1.Size = new System.Drawing.Size(75, 75);
             this.log_button1.TabIndex = 42;
@@ -342,21 +359,23 @@
             this.panel1.Controls.Add(this.sub_radioButton2);
             this.panel1.Controls.Add(this.local_radioButton1);
             this.panel1.Controls.Add(this.local_config1);
-            this.panel1.Controls.Add(this.subscription1);
             this.panel1.Controls.Add(this.sub_textBox);
             this.panel1.Controls.Add(this.download_button);
             this.panel1.Controls.Add(this.local_config_path_textBox);
             this.panel1.Controls.Add(this.browse_button);
-            this.panel1.Location = new System.Drawing.Point(4, 247);
+            this.panel1.Controls.Add(this.subscription1);
+            this.panel1.Location = new System.Drawing.Point(4, 248);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(426, 142);
+            this.panel1.Size = new System.Drawing.Size(427, 142);
             this.panel1.TabIndex = 43;
             // 
             // sub_radioButton2
             // 
             this.sub_radioButton2.AutoSize = true;
             this.sub_radioButton2.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.sub_radioButton2.Location = new System.Drawing.Point(66, 116);
+            this.sub_radioButton2.Location = new System.Drawing.Point(60, 112);
+            this.sub_radioButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.sub_radioButton2.Name = "sub_radioButton2";
             this.sub_radioButton2.Size = new System.Drawing.Size(59, 24);
             this.sub_radioButton2.TabIndex = 15;
@@ -368,7 +387,8 @@
             this.local_radioButton1.AutoSize = true;
             this.local_radioButton1.Checked = true;
             this.local_radioButton1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.local_radioButton1.Location = new System.Drawing.Point(67, 43);
+            this.local_radioButton1.Location = new System.Drawing.Point(60, 42);
+            this.local_radioButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.local_radioButton1.Name = "local_radioButton1";
             this.local_radioButton1.Size = new System.Drawing.Size(59, 24);
             this.local_radioButton1.TabIndex = 14;
@@ -381,6 +401,7 @@
             // 
             this.logobox.Image = global::ClashCS.Properties.Resources.logo;
             this.logobox.Location = new System.Drawing.Point(1, 12);
+            this.logobox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.logobox.Name = "logobox";
             this.logobox.Size = new System.Drawing.Size(128, 128);
             this.logobox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -421,20 +442,21 @@
             // 
             // proxiesButton
             // 
-            this.proxiesButton.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.proxiesButton.Location = new System.Drawing.Point(345, 153);
+            this.proxiesButton.Font = new System.Drawing.Font("Microsoft YaHei", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.proxiesButton.Location = new System.Drawing.Point(345, 152);
+            this.proxiesButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.proxiesButton.Name = "proxiesButton";
             this.proxiesButton.Size = new System.Drawing.Size(75, 75);
             this.proxiesButton.TabIndex = 45;
             this.proxiesButton.Text = "Proxies";
             this.proxiesButton.UseVisualStyleBackColor = true;
-            this.proxiesButton.Click += new System.EventHandler(this.button1_Click);
+            this.proxiesButton.Click += new System.EventHandler(this.proxiesButton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(442, 566);
+            this.ClientSize = new System.Drawing.Size(443, 566);
             this.Controls.Add(this.proxiesButton);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.log_button1);
@@ -460,6 +482,7 @@
             this.Controls.Add(this.logobox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -47,6 +47,8 @@ namespace ClashCS
             Thread checkProcess = new Thread(ts1);
             checkProcess.IsBackground = true;
             checkProcess.Start();
+            pForm.Close();
+            logForm.Close();
         }
 
         private void LoadConf()
@@ -489,7 +491,7 @@ namespace ClashCS
             }
             else return pForm;
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void proxiesButton_Click(object sender, EventArgs e)
         {
             GetProxiesForm().Show();
             GetProxiesForm().BringToFront();
