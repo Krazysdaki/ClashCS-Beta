@@ -143,7 +143,7 @@ namespace ClashCS
                 }
                 else
                 {
-                    MessageBox.Show("test.config.yaml not exist! Download again or check!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("config.yaml not exist! Download again or check!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }               
             }
