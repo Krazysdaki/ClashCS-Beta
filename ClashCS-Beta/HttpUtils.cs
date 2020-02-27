@@ -133,7 +133,7 @@ namespace ClashCS
             string postData = "{\"port\":" + _c.port + ", \"socks-port\":" + _c.sport + ", \"redir-port\":" + _c.rport + ", \"allow-lan\":" + _c.lan + ", \"mode\":" + "\"" + _c.mode + "\"}";
             //MessageBox.Show(postData);
             var encoding = new UTF8Encoding();
-            var bytes = Encoding.GetEncoding("iso-8859-1").GetBytes(postData);
+            var bytes = Encoding.GetEncoding("utf-8").GetBytes(postData);
             var request = (HttpWebRequest)WebRequest.Create(configsURL);
             request.Method = "PATCH";
             request.ContentLength = bytes.Length;
@@ -187,7 +187,7 @@ namespace ClashCS
             string postData = "{\"name\":" + "\"" + _p[1] + "\"}";
             //MessageBox.Show(postData);
             var encoding = new UTF8Encoding();
-            var bytes = Encoding.GetEncoding("iso-8859-1").GetBytes(postData);
+            var bytes = Encoding.GetEncoding("utf-8").GetBytes(postData);
             var request = (HttpWebRequest)WebRequest.Create(proxiesURL + "/" + _p[0]);
             //MessageBox.Show(configsURL + "/" + _p[0]);
             request.ProtocolVersion = new Version("1.0");
@@ -199,8 +199,8 @@ namespace ClashCS
             writeStream.Flush();
             try
             {
-                var response = (HttpWebResponse)request.GetResponse();
-                //MessageBox.Show(response.StatusCode.ToString());
+              var response = (HttpWebResponse)request.GetResponse();
+              //MessageBox.Show(response.StatusCode.ToString());
             }
             catch (Exception ex)
             {
