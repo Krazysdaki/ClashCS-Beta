@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Threading.Tasks;
 using static ClashCS.HttpUtils;
+using System.Collections.Generic;
 
 namespace ClashCS
 {
@@ -101,11 +102,9 @@ namespace ClashCS
                         if (dr == DialogResult.OK)
                         {
                             download_button.Enabled = false;
-                            //string result = null;
                             var dc = Task.Run<string>(() => { return HttpUtils.Start(mmdbURL, local_config_path_textBox.Text + "\\Country.mmdb");});
                             MessageBox.Show("Wait for download complete...");
                             MessageBox.Show(dc.Result);
-                            //dc.Start();
                             download_button.Enabled = true;
                             DIR = local_config_path_textBox.Text;
                             return true;
@@ -257,9 +256,8 @@ namespace ClashCS
 
         public static void SetUpDown(object _s)
         {
-            var _str = _s.ToString();
-            var _d = _str.Split(',');
-            updownLabel.Text = "▲" + _d[0] + "KB/s " + "▼" + _d[1] + "KB/s";
+            var _d = (double[])_s;
+            updownLabel.Text = "▲" + Math.Round(_d[0], 1) + "KB/s " + "▼" + Math.Round(_d[1], 1) + "KB/s";
         }
 
         LogsForm logForm = new LogsForm();

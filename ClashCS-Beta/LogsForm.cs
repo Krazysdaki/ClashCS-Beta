@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
+using Newtonsoft.Json.Linq;
 
 namespace ClashCS
 {
@@ -24,30 +25,13 @@ namespace ClashCS
 
         public static void AddLog(object _json)
         {
-            var logs = DeJson(_json.ToString());
+            JObject j = JObject.Parse(_json.ToString());
             string _time = DateTime.Now.ToLongTimeString();
             ListViewItem item = new ListViewItem();
-            item.Text = logs[1];
+            item.Text = j["type"].ToString();
             item.SubItems.Add(_time);
-            item.SubItems.Add(logs[3]);
+            item.SubItems.Add(j["payload"].ToString());
             listView1.Items.Add(item);
-        }
-
-        static string[] DeJson(string json)
-        {
-            var list = json.ToList();
-            Console.WriteLine(list.ToArray());
-            list.Remove('{');
-            list.Remove('}');
-            int i = 8;
-            while (i != 0)
-            {
-                list.Remove('\"');
-                i--;
-            }
-            json = string.Join("", list.ToArray());
-            var jsonData = json.Split(':', ',');
-            return jsonData;
         }
 
     }

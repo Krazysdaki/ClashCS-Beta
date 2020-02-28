@@ -84,14 +84,8 @@ namespace ClashCS
             {
                 try
                 {
-                    var _json = sr.ReadLine();
-                    var _list = _json.ToList();
-                    _list.Remove('{');
-                    _list.Remove('}');
-                    _json = string.Join("", _list.ToArray());
-                    var _d = _json.Split(',', ':');
-                    object s = ((double)(int.Parse(_d[1]) / 1000)).ToString() + ',' + ((double)(int.Parse(_d[3]) / 1000)).ToString();
-
+                    var j = JObject.Parse(sr.ReadLine());
+                    object s = new double[] { double.Parse(j["up"].ToString()) / 1000, double.Parse(j["down"].ToString()) / 1000 };
                     MainForm.cntx.Send(MainForm.SetUpDown, s);
                 }
                 catch { return; }
@@ -185,11 +179,9 @@ namespace ClashCS
         public void RestPut(string[] _p)
         {
             string postData = "{\"name\":" + "\"" + _p[1] + "\"}";
-            //MessageBox.Show(postData);
             var encoding = new UTF8Encoding();
             var bytes = Encoding.GetEncoding("utf-8").GetBytes(postData);
             var request = (HttpWebRequest)WebRequest.Create(proxiesURL + "/" + _p[0]);
-            //MessageBox.Show(configsURL + "/" + _p[0]);
             request.ProtocolVersion = new Version("1.0");
             request.Method = "PUT";
             request.ContentLength = bytes.Length;
@@ -200,7 +192,6 @@ namespace ClashCS
             try
             {
               var response = (HttpWebResponse)request.GetResponse();
-              //MessageBox.Show(response.StatusCode.ToString());
             }
             catch (Exception ex)
             {
