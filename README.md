@@ -1,6 +1,6 @@
 # ClashCS-Beta
-A Beta version Clash GUI built by C#.
-![ClashCS-Beta](https://img04.sogoucdn.com/app/a/100520146/b4ccdbaeba7d9af4e55eec2320fe7637)
+A Beta version Clash GUI built by C#.  
+![ClashCS-Beta](https://img04.sogoucdn.com/app/a/100520146/6230b2c6b8cda677ef85d82b2307a4f2)  
 
 ## To Use
 At first prepare `.Net Framework 4.6.1`  
